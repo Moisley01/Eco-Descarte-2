@@ -8,10 +8,12 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-    host: 'localhost',
+    host: 'autorack.proxy.rlwy.net',
     user: 'root',
-    password: 'Terrestre123*',
-    database: 'ecodescarte'
+    password: 'FsHdvIvzQdnETVdolCsWDocqhqvBsYtj',
+    database: 'railway',
+    port: 32555,
+    connectTimeout: 60000
 });
 
 db.connect((err) => {
