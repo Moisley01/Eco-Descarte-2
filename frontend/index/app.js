@@ -58,7 +58,7 @@ boxContainerHTML.addEventListener('click', (event) => {
 // Buscar produtos da API
 const initApp = () => {
 
-    fetch('http://localhost:3000/produtos')
+    fetch('https://eco-descarte-2-production.up.railway.app/produtos')
 
         .then(response => response.json())
 

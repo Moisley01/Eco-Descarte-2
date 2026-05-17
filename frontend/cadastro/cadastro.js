@@ -10,7 +10,7 @@ form.addEventListener('submit', async (event) => {
 
     try {
 
-        const resposta = await fetch('http://localhost:3000/cadastro', {
+        const resposta = await fetch('https://eco-descarte-2-production.up.railway.app/cadastro', {
 
             method: 'POST',
 
@@ -32,7 +32,7 @@ form.addEventListener('submit', async (event) => {
 
             alert(dados.mensagem);
 
-            window.location.href = 'login.html';
+            window.location.href = '../login/login.html';
 
         } else {
 

@@ -9,7 +9,7 @@ form.addEventListener('submit', async (event) => {
 
     try {
 
-        const resposta = await fetch('http://localhost:3000/login', {
+        const resposta = await fetch('https://eco-descarte-2-production.up.railway.app/login', {
 
             method: 'POST',
 
