@@ -17,15 +17,20 @@ async function carregarMissoes() {
 
         container.innerHTML = "";
 
-        if (missoes.length === 0) {
+        // pegar apenas pendentes
+        const pendentes = missoes.filter(
+            missao => missao.status === 'pendente'
+        );
+
+        if (pendentes.length === 0) {
 
             container.innerHTML =
-                "<p>Nenhuma missão encontrada.</p>";
+                "<p>Nenhuma missão pendente.</p>";
 
             return;
         }
 
-        missoes.forEach(missao => {
+        pendentes.forEach(missao => {
 
             container.innerHTML += `
 
@@ -63,6 +68,8 @@ async function carregarMissoes() {
     } catch (erro) {
 
         console.log(erro);
+
+        alert('Erro ao carregar missões');
     }
 }
 
@@ -123,6 +130,8 @@ async function carregarResgates() {
     } catch (erro) {
 
         console.log(erro);
+
+        alert('Erro ao carregar resgates');
     }
 }
 

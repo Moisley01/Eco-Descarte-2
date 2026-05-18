@@ -518,6 +518,119 @@ app.get('/resgates/:usuarioId', (req, res) => {
 });
 
 // ===============================
+// APROVAR MISSÃO
+// ===============================
+app.put('/missoes/:id/aprovar', (req, res) => {
+
+    const id = req.params.id;
+
+    // buscar missão
+    const sqlMissao = `
+        SELECT * FROM missoes
+        WHERE id = ?
+    `;
+
+// ===============================
+// LISTAR TODOS RESGATES
+// ===============================
+app.get('/resgates', (req, res) => {
+
+    const sql = `
+        SELECT * FROM resgates
+        ORDER BY created_at DESC
+    `;
+
+    db.query(sql, (err, result) => {
+
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        res.json(result);
+    });
+});
+
+    db.query(sqlMissao, [id], (err, result) => {
+
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        if (result.length === 0) {
+
+            return res.status(404).json({
+                error: 'Missão não encontrada'
+            });
+        }
+
+        const missao = result[0];
+
+        // atualizar status
+        const sqlUpdate = `
+            UPDATE missoes
+            SET status = 'aprovada'
+            WHERE id = ?
+        `;
+
+        db.query(sqlUpdate, [id], (err) => {
+
+            if (err) {
+                return res.status(500).json(err);
+            }
+
+            // adicionar pontos ao usuário
+            const sqlUsuario = `
+                UPDATE usuarios
+                SET pontos = pontos + ?
+                WHERE id = ?
+            `;
+
+            db.query(
+                sqlUsuario,
+                [missao.pontos, missao.usuario_id],
+                (err) => {
+
+                    if (err) {
+                        return res.status(500).json(err);
+                    }
+
+                    res.json({
+                        success: true,
+                        mensagem: 'Missão aprovada'
+                    });
+                }
+            );
+        });
+    });
+});
+
+// ===============================
+// REJEITAR MISSÃO
+// ===============================
+app.put('/missoes/:id/rejeitar', (req, res) => {
+
+    const id = req.params.id;
+
+    const sql = `
+        UPDATE missoes
+        SET status = 'rejeitada'
+        WHERE id = ?
+    `;
+
+    db.query(sql, [id], (err) => {
+
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        res.json({
+            success: true,
+            mensagem: 'Missão rejeitada'
+        });
+    });
+});
+
+// ===============================
 // INICIAR SERVIDOR
 // ===============================
 app.listen(3000, () => {
