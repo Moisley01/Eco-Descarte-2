@@ -26,17 +26,19 @@ form.addEventListener('submit', async (event) => {
 
         const dados = await resposta.json();
 
-        if(dados.success){
+if (dados.success) {
 
-            alert('Login realizado com sucesso!');
+    localStorage.setItem('usuario', JSON.stringify(dados.usuario));
 
-            console.log(dados.usuario);
+    alert('Login realizado com sucesso!');
 
-        } else {
+    window.location.href = '../dash/dashboard.html';
 
-            alert(dados.mensagem);
+} else {
 
-        }
+    alert(dados.mensagem);
+
+}
 
     } catch(erro){
 

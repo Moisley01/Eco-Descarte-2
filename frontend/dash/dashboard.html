@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoDescarte - Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>EcoDescarte</h2>
+
+        <button onclick="showPage('home')">🏠 Home</button>
+        <button onclick="showPage('mapa')">🗺️ Mapa</button>
+        <button onclick="showPage('loja')">🛒 Loja</button>
+        <button onclick="showPage('perfil')">👤 Perfil</button>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="content">
+
+        <!-- HOME -->
+        <section id="home" class="page">
+            <h1>Bem-vindo 👋</h1>
+            <p id="userName"></p>
+            <p>Pontos: <span id="userPoints"></span></p>
+        </section>
+
+        <!-- MAPA -->
+<section id="mapa" class="page hidden">
+    <h2>Mapa de Coleta 🗺️</h2>
+
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15936.823341590052!2d-59.94503219999999!3d-3.0394121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scoleta%20de%20reciclagem!5e0!3m2!1spt-BR!2sbr!4v1778520309577!5m2!1spt-BR!2sbr"
+        width="100%"
+        height="400"
+        style="border:0; border-radius:10px;"
+        allowfullscreen=""
+        loading="lazy">
+    </iframe>
+
+    <button onclick="iniciarMissao()">Iniciar Missão</button>
+</section>
+        <!-- LOJA -->
+        <section id="loja" class="page hidden">
+            <h2>Loja 🛒</h2>
+            <div id="produtos"></div>
+        </section>
+
+        <!-- PERFIL -->
+        <section id="perfil" class="page hidden">
+            <h2>Perfil 👤</h2>
+
+            <p>Email: <span id="email"></span></p>
+            <p>Total de pontos: <span id="points"></span></p>
+        </section>
+
+    </main>
+
+</div>
+
+<script src="dashboard.js"></script>
+
+</body>
+</html>
