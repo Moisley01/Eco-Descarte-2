@@ -1,17 +1,25 @@
-// pegar usuário do login
+// ===============================
+// USUÁRIO
+// ===============================
 const user = JSON.parse(localStorage.getItem("usuario"));
 
 if (!user) {
     window.location.href = "../login/login.html";
 }
 
-// preencher dados
+// garante pontos sempre definidos
+user.pontos = user.pontos || 0;
+
+// preencher dados na tela
 document.getElementById("userName").innerText = user.nome;
 document.getElementById("userPoints").innerText = user.pontos;
 document.getElementById("email").innerText = user.email;
 document.getElementById("points").innerText = user.pontos;
 
-// navegação entre páginas
+
+// ===============================
+// NAVEGAÇÃO ENTRE TELAS
+// ===============================
 function showPage(page) {
 
     document.querySelectorAll(".page").forEach(p => {
@@ -21,67 +29,77 @@ function showPage(page) {
     document.getElementById(page).classList.remove("hidden");
 }
 
-// MISSÃO (base futura da gamificação)
-function iniciarMissao() {
-    alert("Missão iniciada! Vá até o ponto de coleta.");
-}
 
-function initMap() {
+// ===============================
+// MISSÃO (BASE DO SISTEMA)
+// ===============================
+let missaoAtual = null;
 
-    const centro = { lat: -3.1190, lng: -60.0217 }; // Manaus exemplo
 
-    const map = new google.maps.Map(document.getElementById("mapaGoogle"), {
-        zoom: 12,
-        center: centro,
-    });
-
-    // exemplo de pontos de coleta
-    new google.maps.Marker({
-        position: { lat: -3.1190, lng: -60.0217 },
-        map: map,
-        title: "Ponto de Coleta 1"
-    });
-
-    new google.maps.Marker({
-        position: { lat: -3.0900, lng: -60.0100 },
-        map: map,
-        title: "Ponto de Coleta 2"
-    });
-}
-
-let missaoAtiva = false;
-let pontosGanhos = 10;
-
+// INICIAR MISSÃO
 function iniciarMissao() {
 
-    if (missaoAtiva) {
-        alert("Você já está em uma missão!");
+    if (missaoAtual) {
+        alert("Você já tem uma missão ativa!");
         return;
     }
 
-    missaoAtiva = true;
+    if (!user.id) {
+        alert("Usuário inválido");
+        return;
+    }
 
-    alert("Missão iniciada! Vá até o ponto de coleta e confirme o descarte.");
+    const pontoSelecionado = {
+        id: 1,
+        nome: "Ecoponto Centro",
+        latitude: -3.1190,
+        longitude: -60.0217
+    };
 
+    missaoAtual = {
+        id: Date.now(),
+        usuarioId: user.id,
+        ponto: pontoSelecionado,
+        status: "ativa",
+        tipoLixo: null,
+        quantidade: null,
+        distancia: null,
+        pontosBase: 10,
+        createdAt: new Date()
+    };
+
+    document.getElementById("btnConcluir").style.display = "inline-block";
+
+    console.log("Missão criada:", missaoAtual);
+
+    alert("Missão iniciada! Vá até o ponto de coleta.");
 }
 
+
+// CONCLUIR MISSÃO
 function concluirMissao() {
 
-    if (!missaoAtiva) {
+    if (!missaoAtual) {
         alert("Nenhuma missão ativa!");
         return;
     }
 
-    missaoAtiva = false;
+    missaoAtual.status = "concluida";
 
-    let user = JSON.parse(localStorage.getItem("usuario"));
+    let pontosGanhos = missaoAtual.pontosBase;
 
     user.pontos += pontosGanhos;
 
     localStorage.setItem("usuario", JSON.stringify(user));
 
     document.getElementById("userPoints").innerText = user.pontos;
+    document.getElementById("points").innerText = user.pontos;
+
+    document.getElementById("btnConcluir").style.display = "none";
+
+    console.log("Missão finalizada:", missaoAtual);
 
     alert(`Missão concluída! +${pontosGanhos} pontos`);
 
+    missaoAtual = null;
 }
