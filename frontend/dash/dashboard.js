@@ -211,7 +211,7 @@ async function concluirMissao() {
         );
 
         alert(
-            `Missão concluída! +${dados.pontosGanhos} pontos`
+            'Missão enviada para análise do colaborador!'
         );
 
         missaoAtual = null;
