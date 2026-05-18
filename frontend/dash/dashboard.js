@@ -17,6 +17,62 @@ if (!user) {
 // ===============================
 let missaoAtual = null;
 
+// ===============================
+// CARREGAR MISSÃO ATIVA
+// ===============================
+async function carregarMissaoAtiva() {
+
+    try {
+
+        const resposta = await fetch(
+            `${API}/missoes/ativa/${user.id}`
+        );
+
+        const missao = await resposta.json();
+
+        missaoAtual = missao;
+
+        // mostrar botão concluir
+        if (missaoAtual) {
+
+            document.getElementById("btnConcluir")
+                .style.display = "inline-block";
+
+            document.getElementById("statusMissao")
+                .innerText =
+                    "Missão pendente de análise";
+
+        } else {
+
+            document.getElementById("btnConcluir")
+                .style.display = "none";
+
+            document.getElementById("statusMissao")
+                .innerText =
+                    "Nenhuma missão ativa";
+        }
+
+    } catch (erro) {
+
+        console.log(erro);
+    }
+}
+
+
+// ===============================
+// NAVEGAÇÃO
+// ===============================
+function showPage(page) {
+
+    document.querySelectorAll(".page")
+        .forEach(p => {
+
+            p.classList.add("hidden");
+        });
+
+    document.getElementById(page)
+        .classList.remove("hidden");
+}
 
 // ===============================
 // CARREGAR USUÁRIO
