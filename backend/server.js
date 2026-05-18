@@ -153,7 +153,7 @@ app.post('/missoes', (req, res) => {
             status,
             pontos
         )
-        VALUES (?, ?, ?, ?, 'ativa', ?)
+        VALUES (?, ?, ?, ?, 'pendente', ?)
     `;
 
     db.query(
@@ -168,6 +168,7 @@ app.post('/missoes', (req, res) => {
         (err, result) => {
 
             if (err) {
+
                 console.log(err);
 
                 return res.status(500).json({
@@ -191,91 +192,22 @@ app.put('/missoes/:id/concluir', (req, res) => {
 
     const id = req.params.id;
 
-    // BUSCAR MISSÃO
-    const sqlBusca = `
-        SELECT * FROM missoes
+    const sql = `
+        UPDATE missoes
+        SET concluded_at = NOW()
         WHERE id = ?
     `;
 
-    db.query(sqlBusca, [id], (err, result) => {
+    db.query(sql, [id], (err) => {
 
         if (err) {
             return res.status(500).json(err);
         }
 
-        // missão não encontrada
-        if (result.length === 0) {
-
-            return res.status(404).json({
-                error: 'Missão não encontrada'
-            });
-        }
-
-        const missao = result[0];
-
-        // verificar se já foi concluída
-        if (missao.status === 'concluida') {
-
-            return res.status(400).json({
-                error: 'Missão já concluída'
-            });
-        }
-
-        // concluir missão
-        const sqlConcluir = `
-            UPDATE missoes
-            SET status = 'concluida',
-                concluded_at = NOW()
-            WHERE id = ?
-        `;
-
-        db.query(sqlConcluir, [id], (err) => {
-
-            if (err) {
-                return res.status(500).json(err);
-            }
-
-            // atualizar pontos do usuário
-            const sqlPontos = `
-                UPDATE usuarios
-                SET pontos = pontos + ?
-                WHERE id = ?
-            `;
-
-            db.query(
-                sqlPontos,
-                [missao.pontos, missao.usuario_id],
-                (err) => {
-
-                    if (err) {
-                        return res.status(500).json(err);
-                    }
-
-                    // buscar usuário atualizado
-                    const sqlUsuario = `
-                        SELECT * FROM usuarios
-                        WHERE id = ?
-                    `;
-
-                    db.query(
-                        sqlUsuario,
-                        [missao.usuario_id],
-                        (err, usuarioResult) => {
-
-                            if (err) {
-                                return res.status(500).json(err);
-                            }
-
-                            res.json({
-                                success: true,
-                                message: 'Missão concluída com sucesso',
-                                pontosGanhos: missao.pontos,
-                                usuario: usuarioResult[0]
-                            });
-                        }
-                    );
-                }
-            );
+        res.json({
+            success: true,
+            mensagem:
+                'Missão enviada para análise do colaborador'
         });
     });
 });
@@ -300,7 +232,7 @@ app.get('/missoes', (req, res) => {
 
 
 // ===============================
-// BUSCAR MISSÃO ATIVA
+// BUSCAR MISSÃO PENDENTE
 // ===============================
 app.get('/missoes/ativa/:usuarioId', (req, res) => {
 
@@ -309,7 +241,7 @@ app.get('/missoes/ativa/:usuarioId', (req, res) => {
     const sql = `
         SELECT * FROM missoes
         WHERE usuario_id = ?
-        AND status = 'ativa'
+        AND status = 'pendente'
         LIMIT 1
     `;
 
@@ -329,7 +261,7 @@ app.get('/missoes/ativa/:usuarioId', (req, res) => {
 
 
 // ===============================
-// BUSCAR USUÁRIO POR ID
+// BUSCAR USUÁRIO
 // ===============================
 app.get('/usuarios/:id', (req, res) => {
 
@@ -357,6 +289,7 @@ app.get('/usuarios/:id', (req, res) => {
     });
 });
 
+
 // ===============================
 // RESGATAR PRODUTO
 // ===============================
@@ -364,7 +297,6 @@ app.post('/resgatar', (req, res) => {
 
     const { usuarioId, produtoId } = req.body;
 
-    // buscar produto
     const sqlProduto = `
         SELECT * FROM produtos
         WHERE id = ?
@@ -386,7 +318,6 @@ app.post('/resgatar', (req, res) => {
 
         const produto = produtoResult[0];
 
-        // buscar usuário
         const sqlUsuario = `
             SELECT * FROM usuarios
             WHERE id = ?
@@ -425,18 +356,14 @@ app.post('/resgatar', (req, res) => {
             `;
 
             db.query(
-
                 sqlUpdate,
-
                 [produto.preco, usuarioId],
-
                 (err) => {
 
                     if (err) {
                         return res.status(500).json(err);
                     }
 
-                    // gerar código
                     const codigo =
                         `ECO-${Math.floor(Math.random() * 100000)}`;
 
@@ -454,9 +381,7 @@ app.post('/resgatar', (req, res) => {
                     `;
 
                     db.query(
-
                         sqlResgate,
-
                         [
                             usuarioId,
                             produto.id,
@@ -464,20 +389,15 @@ app.post('/resgatar', (req, res) => {
                             produto.preco,
                             codigo
                         ],
-
                         (err) => {
 
                             if (err) {
                                 return res.status(500).json(err);
                             }
 
-                            // buscar usuário atualizado
                             db.query(
-
                                 sqlUsuario,
-
                                 [usuarioId],
-
                                 (err, usuarioAtualizado) => {
 
                                     if (err) {
@@ -506,6 +426,7 @@ app.post('/resgatar', (req, res) => {
     });
 });
 
+
 // ===============================
 // LISTAR RESGATES DO USUÁRIO
 // ===============================
@@ -529,18 +450,6 @@ app.get('/resgates/:usuarioId', (req, res) => {
     });
 });
 
-// ===============================
-// APROVAR MISSÃO
-// ===============================
-app.put('/missoes/:id/aprovar', (req, res) => {
-
-    const id = req.params.id;
-
-    // buscar missão
-    const sqlMissao = `
-        SELECT * FROM missoes
-        WHERE id = ?
-    `;
 
 // ===============================
 // LISTAR TODOS RESGATES
@@ -561,6 +470,19 @@ app.get('/resgates', (req, res) => {
         res.json(result);
     });
 });
+
+
+// ===============================
+// APROVAR MISSÃO
+// ===============================
+app.put('/missoes/:id/aprovar', (req, res) => {
+
+    const id = req.params.id;
+
+    const sqlMissao = `
+        SELECT * FROM missoes
+        WHERE id = ?
+    `;
 
     db.query(sqlMissao, [id], (err, result) => {
 
@@ -616,6 +538,7 @@ app.get('/resgates', (req, res) => {
     });
 });
 
+
 // ===============================
 // REJEITAR MISSÃO
 // ===============================
@@ -642,9 +565,11 @@ app.put('/missoes/:id/rejeitar', (req, res) => {
     });
 });
 
+
 // ===============================
 // INICIAR SERVIDOR
 // ===============================
 app.listen(3000, () => {
+
     console.log('Servidor rodando na porta 3000');
 });
