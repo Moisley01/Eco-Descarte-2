@@ -44,6 +44,16 @@ async function carregarMissoes() {
                     </p>
 
                     <p>
+                        Tipo:
+                        ${missao.tipo_lixo}
+                    </p>
+
+                    <p>
+                        Quantidade:
+                        ${missao.quantidade}
+                    </p>
+
+                    <p>
                         Status:
                         ${missao.status}
                     </p>

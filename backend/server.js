@@ -141,7 +141,13 @@ app.post('/cadastro', (req, res) => {
 // ===============================
 app.post('/missoes', (req, res) => {
 
-    const { usuarioId, ponto, pontosBase } = req.body;
+    const {
+    usuarioId,
+    ponto,
+    pontosBase,
+    tipoLixo,
+    quantidade
+} = req.body;
 
     const sql = `
         INSERT INTO missoes

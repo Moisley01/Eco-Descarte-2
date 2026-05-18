@@ -57,64 +57,6 @@ async function carregarUsuario() {
 }
 
 
-// ===============================
-// CARREGAR MISSÃO ATIVA
-// ===============================
-async function carregarMissaoAtiva() {
-
-    try {
-
-        const resposta = await fetch(
-            `${API}/missoes/ativa/${user.id}`
-        );
-
-        const missao = await resposta.json();
-
-        missaoAtual = missao;
-
-        // mostrar botão concluir se existir missão
-        if (missaoAtual) {
-
-            document.getElementById("btnConcluir")
-                .style.display = "inline-block";
-
-            document.getElementById("statusMissao")
-                .innerText = "Missão ativa em andamento";
-
-        } else {
-
-            document.getElementById("btnConcluir")
-                .style.display = "none";
-
-            document.getElementById("statusMissao")
-                .innerText = "Nenhuma missão ativa";
-        }
-
-    } catch (erro) {
-
-        console.log(erro);
-    }
-}
-
-
-// ===============================
-// NAVEGAÇÃO
-// ===============================
-function showPage(page) {
-
-    document.querySelectorAll(".page").forEach(p => {
-
-        p.classList.add("hidden");
-    });
-
-    document.getElementById(page)
-        .classList.remove("hidden");
-}
-
-
-// ===============================
-// INICIAR MISSÃO
-// ===============================
 async function iniciarMissao() {
 
     try {
@@ -126,9 +68,27 @@ async function iniciarMissao() {
             return;
         }
 
+        // pegar dados do formulário
+        const pontoNome =
+            document.getElementById("pontoColeta").value;
+
+        const tipoLixo =
+            document.getElementById("tipoLixo").value;
+
+        const quantidade =
+            document.getElementById("quantidade").value;
+
+        // validar quantidade
+        if (!quantidade) {
+
+            alert("Informe a quantidade");
+
+            return;
+        }
+
         const pontoSelecionado = {
 
-            nome: "Ecoponto Centro",
+            nome: pontoNome,
 
             latitude: -3.1190,
 
@@ -149,7 +109,11 @@ async function iniciarMissao() {
 
                 ponto: pontoSelecionado,
 
-                pontosBase: 10
+                pontosBase: 10,
+
+                tipoLixo,
+
+                quantidade
             })
         });
 
@@ -161,7 +125,9 @@ async function iniciarMissao() {
             return;
         }
 
-        alert("Missão iniciada!");
+        alert(
+            "Missão iniciada e enviada para análise!"
+        );
 
         await carregarMissaoAtiva();
 
