@@ -12,12 +12,23 @@
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
+
         <h2>EcoDescarte</h2>
 
         <button onclick="showPage('home')">🏠 Home</button>
+
         <button onclick="showPage('mapa')">🗺️ Mapa</button>
+
         <button onclick="showPage('loja')">🛒 Loja</button>
+
+        <button onclick="showPage('resgates')">
+            🎟 Resgates
+        </button>
+
         <button onclick="showPage('perfil')">👤 Perfil</button>
+
+        <button onclick="logout()">🚪 Sair</button>
+
     </aside>
 
     <!-- CONTEÚDO -->
@@ -25,14 +36,23 @@
 
         <!-- HOME -->
         <section id="home" class="page">
+
             <h1>Bem-vindo 👋</h1>
 
             <p>Nome: <span id="userName"></span></p>
+
             <p>Pontos: <span id="userPoints"></span></p>
+
+            <h2>Histórico de Missões</h2>
+
+            <div id="historicoMissoes"></div>
+
         </section>
+
 
         <!-- MAPA -->
         <section id="mapa" class="page hidden">
+
             <h2>Mapa de Coleta 🗺️</h2>
 
             <iframe
@@ -44,26 +64,50 @@
                 loading="lazy">
             </iframe>
 
-            <button onclick="iniciarMissao()">Iniciar Missão</button>
+            <p id="statusMissao"></p>
 
-            <button id="btnConcluir" onclick="concluirMissao()" style="display:none;">
+            <button onclick="iniciarMissao()">
+                Iniciar Missão
+            </button>
+
+            <button
+                id="btnConcluir"
+                onclick="concluirMissao()"
+                style="display:none;">
+
                 Concluir Missão
             </button>
 
         </section>
 
+
         <!-- LOJA -->
         <section id="loja" class="page hidden">
+
             <h2>Loja 🛒</h2>
+
             <div id="produtos"></div>
+
+        </section>
+
+        <!-- RESGATES -->
+        <section id="resgates" class="page hidden">
+
+            <h2>Meus Resgates 🎟</h2>
+
+            <div id="listaResgates"></div>
+
         </section>
 
         <!-- PERFIL -->
         <section id="perfil" class="page hidden">
+
             <h2>Perfil 👤</h2>
 
             <p>Email: <span id="email"></span></p>
+
             <p>Total de pontos: <span id="points"></span></p>
+
         </section>
 
     </main>

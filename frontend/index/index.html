@@ -2,60 +2,90 @@
 <html lang="pt-br">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="index.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth@75..100&display=swap" rel="stylesheet">
 
     <title>EcoDescarte</title>
+
 </head>
 
 <body>
 
+    <!-- HEADER -->
     <header class="header">
 
         <section>
 
             <a href="#" class="logo">
-                <img src="img/logoDF.png"class="logo-site" alt="logo">
+
+                <img
+                    src="img/logoDF.png"
+                    class="logo-site"
+                    alt="logo">
+
             </a>
 
             <nav class="navbar">
-                <a href="#">Home</a>
+
+                <a href="#home">Home</a>
+
                 <a href="#sobre">Sobre</a>
+
                 <a href="#coleta">Coletas</a>
-                <a href="#loja">Loja</a>
+
+                <a href="#recompensas">Recompensas</a>
+
+                <a href="../login/login.html">Entrar</a>
+
             </nav>
-
-            <div class="icons">
-
-
-            </div>
 
         </section>
 
     </header>
 
+
+    <!-- HOME -->
     <div class="home-container">
 
         <section id="home">
 
             <div class="content">
 
-                <h3>DESCARTE CONSCIENTE </h3>
+                <h3>DESCARTE CONSCIENTE</h3>
 
                 <p>
-                    Praticar o descarte consciente é entender que o "jogar fora" não existe: tudo continua na Terra. Quando separamos o lixo e destinamos pilhas e eletrônicos aos pontos corretos, protegemos a natureza e geramos renda para quem recicla.
 
-                    Pequenas atitudes, grandes impactos. Faça parte dessa mudança!
+                    Praticar o descarte consciente é entender
+                    que o "jogar fora" não existe:
+                    tudo continua na Terra.
+
+                    Quando separamos o lixo e destinamos
+                    pilhas e eletrônicos aos pontos corretos,
+                    protegemos a natureza e ajudamos a
+                    construir um futuro mais sustentável.
+
+                    Pequenas atitudes geram grandes impactos.
+                    Faça parte dessa mudança!
+
                 </p>
 
-                <a href="#" class="btn">Saiba mais</a>
+                <a href="../login/login.html" class="btn">
+                    Entrar no Sistema
+                </a>
+
+                <a href="../cadastro/cadastro.html" class="btn">
+                    Criar Conta
+                </a>
 
             </div>
 
@@ -63,6 +93,8 @@
 
     </div>
 
+
+    <!-- SOBRE -->
     <section class="sobre" id="sobre">
 
         <h2 class="title">
@@ -72,7 +104,12 @@
         <div class="row">
 
             <div class="container-image">
-                <img src="img/logoDF.png" class="logo-sobre" alt="sobre-nos">
+
+                <img
+                    src="img/logoDF.png"
+                    class="logo-sobre"
+                    alt="sobre-nos">
+
             </div>
 
             <div class="content">
@@ -80,17 +117,28 @@
                 <h3>Projeto EcoDescarte</h3>
 
                 <p>
-                    
+
+                    O EcoDescarte é uma plataforma criada para
+                    incentivar o descarte correto de resíduos
+                    através da tecnologia e da gamificação.
+
                 </p>
 
                 <p>
-                    O EcoDescarte é um projeto
-                    completo que oferece que oferece
-                    um aplicativo e um site para orientar,
-                    incentivar e facilitar o descarte
-                    correto de resíduos, promovendo
-                    hábitos sustentáveis e
-                    transformando nossa sociedade.
+
+                    Usuários podem participar de missões ecológicas,
+                    acumular pontos e trocar recompensas,
+                    incentivando hábitos sustentáveis e promovendo
+                    impacto positivo na sociedade.
+
+                </p>
+
+                <p>
+
+                    Nosso objetivo é unir conscientização,
+                    tecnologia e sustentabilidade em uma experiência
+                    acessível, moderna e interativa.
+
                 </p>
 
             </div>
@@ -99,10 +147,12 @@
 
     </section>
 
+
+    <!-- COLETAS -->
     <section class="coletas" id="coleta">
 
         <h2 class="title">
-            Pontos de <span>Coletas</span>
+            Pontos de <span>Coleta</span>
         </h2>
 
         <iframe
@@ -113,25 +163,35 @@
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
+
         </iframe>
 
     </section>
 
-    <section class="loja" id="loja">
+
+    <!-- RECOMPENSAS -->
+    <section class="loja" id="recompensas">
 
         <h2 class="title">
-            Loja
+            Recompensas
         </h2>
 
-        <!-- Produtos serão carregados automaticamente pelo app.js -->
+        <p style="text-align:center; margin-bottom:20px;">
+
+            Participe das missões ecológicas,
+            acumule pontos e troque por recompensas
+            sustentáveis dentro da plataforma.
+
+        </p>
+
+        <!-- Produtos carregados automaticamente -->
         <div class="box-container">
         </div>
 
     </section>
 
-    
 
-    <!-- IMPORTANTE -->
+    <!-- SCRIPT -->
     <script src="app.js"></script>
 
 </body>

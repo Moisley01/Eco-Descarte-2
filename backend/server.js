@@ -357,6 +357,165 @@ app.get('/usuarios/:id', (req, res) => {
     });
 });
 
+// ===============================
+// RESGATAR PRODUTO
+// ===============================
+app.post('/resgatar', (req, res) => {
+
+    const { usuarioId, produtoId } = req.body;
+
+    // buscar produto
+    const sqlProduto = `
+        SELECT * FROM produtos
+        WHERE id = ?
+    `;
+
+    db.query(sqlProduto, [produtoId], (err, produtoResult) => {
+
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        if (produtoResult.length === 0) {
+
+            return res.status(404).json({
+                error: 'Produto não encontrado'
+            });
+        }
+
+        const produto = produtoResult[0];
+
+        // buscar usuário
+        const sqlUsuario = `
+            SELECT * FROM usuarios
+            WHERE id = ?
+        `;
+
+        db.query(sqlUsuario, [usuarioId], (err, usuarioResult) => {
+
+            if (err) {
+                return res.status(500).json(err);
+            }
+
+            if (usuarioResult.length === 0) {
+
+                return res.status(404).json({
+                    error: 'Usuário não encontrado'
+                });
+            }
+
+            const usuario = usuarioResult[0];
+
+            // verificar pontos
+            if (usuario.pontos < produto.preco) {
+
+                return res.json({
+                    success: false,
+                    mensagem: 'Pontos insuficientes'
+                });
+            }
+
+            // descontar pontos
+            const sqlUpdate = `
+                UPDATE usuarios
+                SET pontos = pontos - ?
+                WHERE id = ?
+            `;
+
+            db.query(
+                sqlUpdate,
+                [produto.preco, usuarioId],
+                (err) => {
+
+                    if (err) {
+                        return res.status(500).json(err);
+                    }
+
+                    // gerar código do comprovante
+                    const codigo = `ECO-${Math.floor(Math.random() * 100000)}`;
+
+                    // salvar resgate
+                    const sqlResgate = `
+                        INSERT INTO resgates
+                        (
+                            usuario_id,
+                            produto_id,
+                            produto_nome,
+                            pontos_gastos,
+                            codigo
+                        )
+                        VALUES (?, ?, ?, ?, ?)
+                    `;
+
+                    db.query(
+                        sqlResgate,
+                        [
+                            usuarioId,
+                            produto.id,
+                            produto.nome,
+                            produto.preco,
+                            codigo
+                        ],
+                        (err) => {
+
+                            if (err) {
+                                return res.status(500).json(err);
+                            }
+
+                            // buscar usuário atualizado
+                            db.query(
+                                sqlUsuario,
+                                [usuarioId],
+                                (err, usuarioAtualizado) => {
+
+                                    if (err) {
+                                        return res.status(500).json(err);
+                                    }
+
+                                    res.json({
+
+                                        success: true,
+
+                                        mensagem:
+                                            'Produto resgatado com sucesso!',
+
+                                        codigo,
+
+                                        usuario:
+                                            usuarioAtualizado[0]
+                                    });
+                                }
+                            );
+                        }
+                    );
+                }
+            );
+        });
+    });
+});
+
+// ===============================
+// LISTAR RESGATES DO USUÁRIO
+// ===============================
+app.get('/resgates/:usuarioId', (req, res) => {
+
+    const usuarioId = req.params.usuarioId;
+
+    const sql = `
+        SELECT * FROM resgates
+        WHERE usuario_id = ?
+        ORDER BY created_at DESC
+    `;
+
+    db.query(sql, [usuarioId], (err, result) => {
+
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        res.json(result);
+    });
+});
 
 // ===============================
 // INICIAR SERVIDOR

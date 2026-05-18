@@ -6,6 +6,8 @@
     font-size: 10px;
 }
 
+
+/* RESET */
 *{
     margin: 0;
     padding: 0;
@@ -17,16 +19,29 @@
     font-family: "Roboto", sans-serif;
 }
 
+
+/* SCROLL CORRIGIDO */
+html{
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px;
+}
+
+
 body{
     background-color: var(--bg);
 }
 
-section {
+
+/* SECTIONS */
+section{
     padding: 3rem 2rem;
     margin: 0 auto;
     max-width: 1200px;
 }
-.header {
+
+
+/* HEADER */
+.header{
     position: fixed;
     top: 0;
     left: 0;
@@ -43,84 +58,89 @@ section {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
 }
- 
-.logo-site {
+
+
+/* LOGO */
+.logo-site{
     width: 100px;
     height: 100px;
     object-fit: contain;
 }
 
-.navbar a {
+
+/* NAVBAR */
+.navbar a{
     margin: 0 1rem;
     font-size: 1.8rem;
     color: #fff;
 }
 
-.navbar a:hover {
+.navbar a:hover{
     color: var(--main-color);
     border-bottom: 0.1rem solid var(--main-color);
     padding-bottom: 0.5rem;
-    font-size: 2rem;
 }
 
-.icons img {
-    margin: 1rem;
-    cursor: pointer;
-}
 
-.icons img:hover {
-    width: 40px;
-    height: 40px;
-}
-
-.btn {
+/* BOTÕES */
+.btn{
     background: var(--main-color);
     color: #fff;
-    padding: 1rem 3 rem;
+    padding: 1rem 3rem;
     font-size: 1.7rem;
     cursor: pointer;
     margin-top: 1rem;
     display: inline-block;
+    border-radius: 8px;
 }
 
-.home-container {
+.btn:hover{
+    letter-spacing: 0.1rem;
+    opacity: 0.9;
+}
+
+
+/* HOME */
+.home-container{
     background: url("./img/folder.jpeg");
-   background-position: center;
-    background-repeat: no-repeat; /* Evita que a imagem fique se repetindo */
-    background-size: contain;     /* Garante que a imagem inteira apareça sem cortes */
-    width: 100%;                  /* Ocupa toda a largura da tela disponível */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
     min-height: 100vh;
 }
 
-.home-container section {
+.home-container section{
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Empurra o conteúdo totalmente para a esquerda */
+    justify-content: flex-start;
     min-height: 100vh;
-    padding-left: 12px;       /* Cria uma margem segura na esquerda para o texto não colar na tela */
+    padding-left: 12px;
 }
 
-.content {
-    max-width: 670px; /* Limita o tamanho horizontal do texto para ele não invadir o desenho do fundo */
-    text-align: left;           /* Garante que o alinhamento do texto seja à esquerda */
-    z-index: 2;                 /* Garante que o texto fique visivelmente por cima se necessário */
+.content{
+    max-width: 670px;
+    text-align: left;
+    z-index: 2;
 }
 
-.content h3 {
+.content h3{
     color: var(--black);
     font-size: 5rem;
-    text-transform: uppercase;  /* Opcional: deixa em maiúsculo igual à sua imagem */
+    text-transform: uppercase;
 }
 
-.content p {
+.content p{
     color: var(--black);
     font-size: 2rem;
-    font-weight: 500;           /* Aumentei de 100 para 500 para o texto preto ficar mais legível sobre o fundo */
-    line-height: 1.8;           /* Corrigido: era vírgula (1,8), o correto no CSS é ponto (1.8) */
+    font-weight: 500;
+    line-height: 1.8;
     padding: 1rem 0;
 }
 
-.title {
+
+/* TITLES */
+.title{
     font-size: 4rem;
     color: var(--main-color);
     text-align: center;
@@ -128,101 +148,130 @@ section {
     margin-bottom: 2rem;
 }
 
-.title span {
+.title span{
     color: #fff;
     text-transform: uppercase;
 }
 
-.sobre .row {
+
+/* SOBRE */
+.sobre .row{
     display: flex;
     align-items: center;
-    background-color: var(--border);
-    gap: 1.5rem
-}
-
-.sobre .row .content {
+    background-color: rgba(0,0,0,0.2);
+    gap: 1.5rem;
+    border-radius: 12px;
     padding: 2rem;
 }
 
-.sobre .row .content h3 {
+.sobre .row .content{
+    padding: 2rem;
+}
+
+.sobre .row .content h3{
     font-size: 3rem;
     color: #fff;
 }
 
-.sobre .row .content p {
-    font: 1.6rem;
+.sobre .row .content p{
+    font-size: 1.6rem;
     color: #fff;
     padding: 1rem 0;
     line-height: 1.8;
 }
 
-.logo-sobre {
+
+/* LOGOS */
+.logo-sobre{
     width: 290px;
     height: 290px;
     object-fit: contain;
 }
 
-.logo-item1 {
-    width: 180px;
-    height: 180px;
-    object-fit: contain;
+
+/* COLETAS */
+.coletas{
+    text-align: center;
 }
 
-.logo-item2 {
-    width: 180px;
-    height: 180px;
-    object-fit: contain;
+.coletas iframe{
+    max-width: 100%;
+    border-radius: 12px;
+    margin-top: 2rem;
 }
 
-.logo-item3 {   
-    width: 180px;
-    height: 180px;
-    object-fit: contain;
-}
 
-.loja .box-container {
+/* RECOMPENSAS */
+.loja .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 1.5rem;
 }
 
-.loja .box-container .box {
+.loja .box-container .box{
     text-align: center;
     border: var(--border);
-    padding: 5rem;
+    padding: 3rem;
     cursor: pointer;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.2);
 }
 
-.loja .box-container .box img {
-    height: 10rem;
+.loja .box-container .box img{
+    height: 15rem;
+    object-fit: contain;
 }
 
-.loja .box-container .box h3 {
+.loja .box-container .box h3{
     color: #fff;
     font-size: 2rem;
     padding: 1rem;
 }
 
-.loja .box-container .box .price {
+.loja .box-container .box .price{
     color: #fff;
     font-size: 2.5rem;
     padding: 0.5rem 0;
 }
 
-.loja .box-container .box:hover {
+.loja .box-container .box:hover{
+    transform: translateY(-5px);
     background-color: #fff;
 }
 
-.loja .box-container .box:hover>* {
+.loja .box-container .box:hover *{
     color: var(--black);
 }
 
-.coleta {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px){
+
+    .header section{
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .navbar{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .content h3{
+        font-size: 3.5rem;
+    }
+
+    .content p{
+        font-size: 1.6rem;
+    }
+
+    .sobre .row{
+        flex-direction: column;
+    }
+
+    .logo-sobre{
+        width: 200px;
+        height: 200px;
+    }
 }
-
-
-
-

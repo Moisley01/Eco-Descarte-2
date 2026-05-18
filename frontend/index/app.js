@@ -1,40 +1,39 @@
-let icons = document.querySelector('.icons');
-let body = document.querySelector('body');
-let boxContainerHTML = document.querySelector('.box-container');
+let boxContainerHTML =
+    document.querySelector('.box-container');
 
-let boxContainer = [];
+let produtos = [];
 
-// Abrir/fechar carrinho
-icons.addEventListener('click', () => {
-    body.classList.toggle('showCart');
-});
 
-// Adicionar produtos no HTML
+// ===============================
+// ADICIONAR PRODUTOS NO HTML
+// ===============================
 const addDataToHTML = () => {
 
     boxContainerHTML.innerHTML = '';
 
-    if (boxContainer.length > 0) {
+    if (produtos.length > 0) {
 
-        boxContainer.forEach(produto => {
+        produtos.forEach(produto => {
 
-            let newProduto = document.createElement('div');
+            let newProduto =
+                document.createElement('div');
 
             newProduto.classList.add('box');
 
-            // Salvar id do produto
-            newProduto.dataset.id = produto.id;
-
             newProduto.innerHTML = `
-                <img src="${produto.image}" class="logo-item" alt="${produto.name}">
+
+                <img
+                    src="${produto.image}"
+                    class="logo-item"
+                    alt="${produto.name}"
+                >
 
                 <h3>${produto.name}</h3>
 
-                <div class="price">${produto.price}pts</div>
+                <div class="price">
+                    ${produto.price} pontos
+                </div>
 
-                <button class="addCart">
-                    Adicione ao Carrinho
-                </button>
             `;
 
             boxContainerHTML.appendChild(newProduto);
@@ -42,36 +41,36 @@ const addDataToHTML = () => {
     }
 };
 
-// Evento do botão adicionar ao carrinho
-boxContainerHTML.addEventListener('click', (event) => {
 
-    let positionClick = event.target;
-
-    if (positionClick.classList.contains('addCart')) {
-
-        let produto_id = positionClick.parentElement.dataset.id;
-
-        alert(`Produto ID: ${produto_id}`);
-    }
-});
-
-// Buscar produtos da API
+// ===============================
+// BUSCAR PRODUTOS DA API
+// ===============================
 const initApp = () => {
 
-    fetch('https://eco-descarte-2-production.up.railway.app/produtos')
+    fetch(
+        'https://eco-descarte-2-production.up.railway.app/produtos'
+    )
 
-        .then(response => response.json())
+    .then(response => response.json())
 
-        .then(data => {
+    .then(data => {
 
-            boxContainer = data;
+        produtos = data;
 
-            addDataToHTML();
-        })
+        addDataToHTML();
+    })
 
-        .catch(error => {
-            console.error('Erro ao buscar produtos:', error);
-        });
+    .catch(error => {
+
+        console.error(
+            'Erro ao buscar produtos:',
+            error
+        );
+    });
 };
 
+
+// ===============================
+// INICIAR
+// ===============================
 initApp();
