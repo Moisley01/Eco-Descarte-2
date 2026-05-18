@@ -84,27 +84,39 @@ section {
 }
 
 .home-container {
-    background: url("./img/folder.jpg");
-    background-position: center;
-    background-size: cover;
+    background: url("./img/folder.jpeg");
+   background-position: center;
+    background-repeat: no-repeat; /* Evita que a imagem fique se repetindo */
+    background-size: contain;     /* Garante que a imagem inteira apareça sem cortes */
+    width: 100%;                  /* Ocupa toda a largura da tela disponível */
+    min-height: 100vh;
 }
 
 .home-container section {
     display: flex;
     align-items: center;
+    justify-content: flex-start; /* Empurra o conteúdo totalmente para a esquerda */
     min-height: 100vh;
+    padding-left: 12px;       /* Cria uma margem segura na esquerda para o texto não colar na tela */
+}
+
+.content {
+    max-width: 670px; /* Limita o tamanho horizontal do texto para ele não invadir o desenho do fundo */
+    text-align: left;           /* Garante que o alinhamento do texto seja à esquerda */
+    z-index: 2;                 /* Garante que o texto fique visivelmente por cima se necessário */
 }
 
 .content h3 {
-    color: #fff;
-    font-size: 6rem;
+    color: var(--black);
+    font-size: 5rem;
+    text-transform: uppercase;  /* Opcional: deixa em maiúsculo igual à sua imagem */
 }
 
 .content p {
-    color: #fff;
+    color: var(--black);
     font-size: 2rem;
-    font-weight: 100;
-    line-height: 1,8;
+    font-weight: 500;           /* Aumentei de 100 para 500 para o texto preto ficar mais legível sobre o fundo */
+    line-height: 1.8;           /* Corrigido: era vírgula (1,8), o correto no CSS é ponto (1.8) */
     padding: 1rem 0;
 }
 
