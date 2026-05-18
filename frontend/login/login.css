@@ -15,7 +15,9 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #1f2937; /* Cor neutra substituindo a imagem de fundo */
+    background: url('./img/loginBG.jpeg');
+    background-size: cover;
+    background-position: center;
 }
 
 /* Container do Formulário (Efeito de vidro/Blur) */
@@ -25,7 +27,7 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     backdrop-filter: blur(50px); /* Efeito de desfoque de fundo */
-    color: #fff;
+    color: #13131a;
     padding: 30px 40px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
@@ -83,7 +85,7 @@ body {
 }
 
 .remember-forgot a {
-    color: #fff;
+    color: #13131a;
     text-decoration: none;
 }
 
