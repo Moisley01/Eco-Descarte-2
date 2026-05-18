@@ -379,7 +379,8 @@ app.post('/resgatar', (req, res) => {
         if (produtoResult.length === 0) {
 
             return res.status(404).json({
-                error: 'Produto não encontrado'
+                success: false,
+                mensagem: 'Produto não encontrado'
             });
         }
 
@@ -400,7 +401,8 @@ app.post('/resgatar', (req, res) => {
             if (usuarioResult.length === 0) {
 
                 return res.status(404).json({
-                    error: 'Usuário não encontrado'
+                    success: false,
+                    mensagem: 'Usuário não encontrado'
                 });
             }
 
@@ -423,16 +425,20 @@ app.post('/resgatar', (req, res) => {
             `;
 
             db.query(
+
                 sqlUpdate,
+
                 [produto.preco, usuarioId],
+
                 (err) => {
 
                     if (err) {
                         return res.status(500).json(err);
                     }
 
-                    // gerar código do comprovante
-                    const codigo = `ECO-${Math.floor(Math.random() * 100000)}`;
+                    // gerar código
+                    const codigo =
+                        `ECO-${Math.floor(Math.random() * 100000)}`;
 
                     // salvar resgate
                     const sqlResgate = `
@@ -448,7 +454,9 @@ app.post('/resgatar', (req, res) => {
                     `;
 
                     db.query(
+
                         sqlResgate,
+
                         [
                             usuarioId,
                             produto.id,
@@ -456,6 +464,7 @@ app.post('/resgatar', (req, res) => {
                             produto.preco,
                             codigo
                         ],
+
                         (err) => {
 
                             if (err) {
@@ -464,8 +473,11 @@ app.post('/resgatar', (req, res) => {
 
                             // buscar usuário atualizado
                             db.query(
+
                                 sqlUsuario,
+
                                 [usuarioId],
+
                                 (err, usuarioAtualizado) => {
 
                                     if (err) {
