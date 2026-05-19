@@ -32,7 +32,8 @@ if (dados.success) {
 
     alert('Login realizado com sucesso!');
 
-    window.location.href = '../dash/dashboard.html';
+    window.location.href =
+    "../dash/dashboard.html";
 
 } else {
 

@@ -7,15 +7,19 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>EcoDescarte</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="index.css">
 
+    <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth@75..100&display=swap" rel="stylesheet">
-
-    <title>EcoDescarte</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
 </head>
 
@@ -26,15 +30,17 @@
 
         <section>
 
-            <a href="#" class="logo">
+            <!-- LOGO -->
+            <a href="index.html" class="logo">
 
                 <img
                     src="img/logoDF.png"
                     class="logo-site"
-                    alt="logo">
+                    alt="EcoDescarte">
 
             </a>
 
+            <!-- NAVBAR -->
             <nav class="navbar">
 
                 <a href="#home">Home</a>
@@ -45,7 +51,10 @@
 
                 <a href="#recompensas">Recompensas</a>
 
-                <a href="../login/login.html">Entrar</a>
+                <!-- LOGIN -->
+                <a href="../login/login.html">
+                    Entrar
+                </a>
 
             </nav>
 
@@ -61,31 +70,46 @@
 
             <div class="content">
 
-                <h3>DESCARTE CONSCIENTE</h3>
+                <h3>
+                    DESCARTE CONSCIENTE
+                </h3>
 
                 <p>
 
                     Praticar o descarte consciente é entender
-                    que o "jogar fora" não existe:
+                    que o “jogar fora” não existe:
                     tudo continua na Terra.
 
-                    Quando separamos o lixo e destinamos
-                    pilhas e eletrônicos aos pontos corretos,
-                    protegemos a natureza e ajudamos a
-                    construir um futuro mais sustentável.
+                    Quando separamos corretamente resíduos,
+                    pilhas e eletrônicos,
+                    ajudamos o meio ambiente e incentivamos
+                    uma sociedade mais sustentável.
 
                     Pequenas atitudes geram grandes impactos.
-                    Faça parte dessa mudança!
+                    Faça parte dessa mudança.
 
                 </p>
 
-                <a href="../login/login.html" class="btn">
-                    Entrar no Sistema
-                </a>
+                <!-- BOTÕES -->
+                <div class="buttons-home">
 
-                <a href="../cadastro/cadastro.html" class="btn">
-                    Criar Conta
-                </a>
+                    <a
+                        href="../login/login.html"
+                        class="btn">
+
+                        Entrar no Sistema
+
+                    </a>
+
+                    <a
+                        href="../cadastro/cadastro.html"
+                        class="btn">
+
+                        Criar Conta
+
+                    </a>
+
+                </div>
 
             </div>
 
@@ -98,23 +122,29 @@
     <section class="sobre" id="sobre">
 
         <h2 class="title">
+
             Sobre <span>Nós</span>
+
         </h2>
 
         <div class="row">
 
+            <!-- IMAGEM -->
             <div class="container-image">
 
                 <img
                     src="img/logoDF.png"
                     class="logo-sobre"
-                    alt="sobre-nos">
+                    alt="Projeto EcoDescarte">
 
             </div>
 
+            <!-- TEXTO -->
             <div class="content">
 
-                <h3>Projeto EcoDescarte</h3>
+                <h3>
+                    Projeto EcoDescarte
+                </h3>
 
                 <p>
 
@@ -126,18 +156,17 @@
 
                 <p>
 
-                    Usuários podem participar de missões ecológicas,
-                    acumular pontos e trocar recompensas,
-                    incentivando hábitos sustentáveis e promovendo
-                    impacto positivo na sociedade e no meio ambiente.
+                    Usuários participam de missões ecológicas,
+                    acumulam EcoPoints e podem trocar
+                    recompensas sustentáveis dentro do sistema.
 
                 </p>
 
                 <p>
 
-                    Nosso objetivo é unir conscientização,
-                    tecnologia e sustentabilidade em uma experiência
-                    acessível, moderna e interativa.
+                    Nosso objetivo é unir tecnologia,
+                    conscientização ambiental e sustentabilidade
+                    em uma experiência moderna e acessível.
 
                 </p>
 
@@ -152,19 +181,25 @@
     <section class="coletas" id="coleta">
 
         <h2 class="title">
+
             Pontos de <span>Coleta</span>
+
         </h2>
 
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15936.823341590052!2d-59.94503219999999!3d-3.0394121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scoleta%20de%20reciclagem!5e0!3m2!1spt-BR!2sbr!4v1778520309577!5m2!1spt-BR!2sbr"
-            width="600"
-            height="450"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
+        <div class="map-container">
 
-        </iframe>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15936.823341590052!2d-59.94503219999999!3d-3.0394121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scoleta%20de%20reciclagem!5e0!3m2!1spt-BR!2sbr!4v1778520309577!5m2!1spt-BR!2sbr"
+                width="100%"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+
+            </iframe>
+
+        </div>
 
     </section>
 
@@ -173,22 +208,46 @@
     <section class="loja" id="recompensas">
 
         <h2 class="title">
+
             Recompensas
+
         </h2>
 
-        <p style="text-align:center; margin-bottom:20px;">
+        <p
+            style="
+                text-align:center;
+                margin-bottom:30px;
+                font-size:18px;
+            ">
 
             Participe das missões ecológicas,
-            acumule pontos e troque por recompensas
-            sustentáveis dentro da plataforma.
+            acumule EcoPoints e troque
+            por recompensas sustentáveis.
 
         </p>
 
-        <!-- Produtos carregados automaticamente -->
+        <!-- PRODUTOS -->
         <div class="box-container">
+
         </div>
 
     </section>
+
+
+    <!-- FOOTER -->
+    <footer
+        style="
+            text-align:center;
+            padding:30px;
+            color:white;
+            background:#2E5E1A;
+            margin-top:50px;
+        ">
+
+        EcoDescarte © 2026
+        • Sustentabilidade e Tecnologia
+
+    </footer>
 
 
     <!-- SCRIPT -->
