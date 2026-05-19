@@ -57,50 +57,165 @@
         <!-- HOME -->
         <section id="home" class="page">
 
-            <h1>Bem-vindo 👋</h1>
+    <!-- TOPO -->
+    <div class="dashboard-top">
+
+        <div>
+
+            <h1>
+                Bem-vindo,
+                <span id="userName"></span> 👋
+            </h1>
 
             <p>
-                Nome:
-                <span id="userName"></span>
+                Acompanhe suas atividades
+                sustentáveis no EcoDescarte.
             </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- CARDS -->
+    <div class="stats-grid">
+
+        <!-- pontos -->
+        <div class="stat-card">
+
+            <h3>EcoCredits</h3>
+
+            <h2 id="userPoints"></h2>
 
             <p>
-                Pontos:
-                <span id="userPoints"></span>
+                Continue reciclando 🌱
             </p>
 
-            <h2>Histórico de Missões</h2>
+        </div>
 
-            <div id="historicoMissoes"></div>
 
-        </section>
+        <!-- missões -->
+        <div class="stat-card">
+
+            <h3>Missões</h3>
+
+            <h2 id="totalMissoes">
+                0
+            </h2>
+
+            <p>
+                Missões realizadas
+            </p>
+
+        </div>
+
+
+        <!-- aprovadas -->
+        <div class="stat-card">
+
+            <h3>Aprovadas</h3>
+
+            <h2 id="missoesAprovadas">
+                0
+            </h2>
+
+            <p>
+                Excelente trabalho
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- HISTÓRICO -->
+    <div class="historico-container">
+
+        <div class="historico-header">
+
+            <h2>
+                Histórico de Missões
+            </h2>
+
+        </div>
+
+        <table class="historico-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Data</th>
+
+                    <th>Ecocredits</th>
+
+                    <th>Status</th>
+
+                    <th>Pontos</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="historicoMissoes">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
 
 
         <!-- MAPA -->
         <section id="mapa" class="page hidden">
 
-            <h2>Mapa de Coleta 🗺️</h2>
+            <h2 class="section-title">
 
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15936.823341590052!2d-59.94503219999999!3d-3.0394121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scoleta%20de%20reciclagem!5e0!3m2!1spt-BR!2sbr!4v1778520309577!5m2!1spt-BR!2sbr"
-                width="100%"
-                height="400"
-                style="border:0; border-radius:10px;"
-                allowfullscreen=""
-                loading="lazy">
-            </iframe>
+                Mapa de Coleta 🗺️
 
-            <p id="statusMissao"></p>
+            </h2>
 
 
-            <!-- FORMULÁRIO MISSÃO -->
+            <!-- CARD MAPA -->
+            <div class="map-card">
+
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15936.823341590052!2d-59.94503219999999!3d-3.0394121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scoleta%20de%20reciclagem!5e0!3m2!1spt-BR!2sbr!4v1778520309577!5m2!1spt-BR!2sbr"
+                    width="100%"
+                    height="420"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy">
+
+                </iframe>
+
+            </div>
+
+
+            <!-- STATUS -->
+            <div class="status-box">
+
+                <p id="statusMissao">
+
+                </p>
+
+            </div>
+
+
+            <!-- FORM -->
             <div class="formMissao">
 
-                <h3>Nova Missão</h3>
+                <h3>
+                    Nova Missão
+                </h3>
 
 
-                <!-- PONTO -->
-                <label>Ponto de Coleta</label>
+                <!-- ecoponto -->
+                <label>
+                    Ponto de Coleta
+                </label>
 
                 <select id="pontoColeta">
 
@@ -119,8 +234,10 @@
                 </select>
 
 
-                <!-- TIPO -->
-                <label>Tipo de Material</label>
+                <!-- tipo -->
+                <label>
+                    Tipo de Material
+                </label>
 
                 <select id="tipoLixo">
 
@@ -147,8 +264,10 @@
                 </select>
 
 
-                <!-- QUANTIDADE -->
-                <label>Quantidade</label>
+                <!-- quantidade -->
+                <label>
+                    Quantidade
+                </label>
 
                 <input
                     type="text"
@@ -157,58 +276,170 @@
                 >
 
 
+                <!-- botão -->
                 <button onclick="iniciarMissao()">
+
                     Iniciar Missão
+
                 </button>
 
             </div>
-
-
-            <button
-                id="btnConcluir"
-                onclick="concluirMissao()"
-                style="display:none;">
-
-                Concluir Missão
-            </button>
 
         </section>
 
 
         <!-- LOJA -->
-        <section id="loja" class="page hidden">
+        <!-- LOJA -->
+<section id="loja" class="page hidden">
 
-            <h2>Loja 🛒</h2>
+    <div class="loja-header">
 
-            <div id="produtos"></div>
+        <div>
 
-        </section>
+            <h2>
+                Loja EcoCredits 🛒
+            </h2>
 
+            <p>
+
+                Troque seus EcoCredits
+                por recompensas sustentáveis.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- PRODUTOS -->
+    <div id="produtos"></div>
+
+</section>
 
         <!-- RESGATES -->
-        <section id="resgates" class="page hidden">
+        <!-- RESGATES -->
+<section id="resgates" class="page hidden">
 
-            <h2>Meus Resgates 🎟</h2>
+    <div class="resgates-header">
 
-            <div id="listaResgates"></div>
+        <div>
 
-        </section>
+            <h2>
+                Meus Resgates 🎟
+            </h2>
+
+            <p>
+
+                Visualize seus vouchers
+                e recompensas resgatadas.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- LISTA -->
+    <div id="listaResgates">
+
+    </div>
+
+</section>
 
 
         <!-- PERFIL -->
         <section id="perfil" class="page hidden">
 
-            <h2>Perfil 👤</h2>
+            <div class="perfil-header">
 
-            <p>
-                Email:
-                <span id="email"></span>
-            </p>
+                <h2>
+                    Meu Perfil 👤
+                </h2>
 
-            <p>
-                Total de pontos:
-                <span id="points"></span>
-            </p>
+                <p>
+
+                    Informações da sua conta EcoDescarte.
+
+                </p>
+
+            </div>
+
+
+            <!-- CARD PERFIL -->
+            <div class="perfil-card">
+
+                <!-- avatar -->
+                <div class="perfil-avatar">
+
+                    👤
+
+                </div>
+
+
+                <!-- infos -->
+                <div class="perfil-info">
+
+                    <h3 id="userNamePerfil">
+
+                    </h3>
+
+                    <p id="email">
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- estatísticas -->
+            <div class="perfil-stats">
+
+                <div class="perfil-stat">
+
+                    <h4>
+                        EcoCredits
+                    </h4>
+
+                    <p id="points">
+
+                    </p>
+
+                </div>
+
+
+                <div class="perfil-stat">
+
+                    <h4>
+                        Missões
+                    </h4>
+
+                    <p id="perfilMissoes">
+
+                        0
+
+                    </p>
+
+                </div>
+
+
+                <div class="perfil-stat">
+
+                    <h4>
+                        Aprovadas
+                    </h4>
+
+                    <p id="perfilAprovadas">
+
+                        0
+
+                    </p>
+
+                </div>
+
+            </div>
 
         </section>
 

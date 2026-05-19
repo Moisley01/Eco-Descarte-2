@@ -100,6 +100,8 @@ async function carregarUsuario() {
 
         document.getElementById("email").innerText =
             usuarioAtualizado.email;
+        document.getElementById("userNamePerfil")
+        .innerText = usuarioAtualizado.nome;
 
         document.getElementById("points").innerText =
             usuarioAtualizado.pontos;
@@ -332,12 +334,39 @@ async function carregarHistorico() {
         const missoes = await resposta.json();
 
         // pegar apenas missões do usuário
-        const minhasMissoes = missoes.filter(missao =>
-            missao.usuario_id === user.id
+        const minhasMissoes = missoes.filter(
+            missao => missao.usuario_id === user.id
         );
+        minhasMissoes.sort((a, b) =>
+            new Date(b.created_at) -
+            new Date(a.created_at)
+        );
+
+        // total de missões
+        document.getElementById("totalMissoes")
+            .innerText = minhasMissoes.length;
+
+
+        // total aprovadas
+        const aprovadas = minhasMissoes.filter(
+            missao => missao.status === 'aprovada'
+        );
+
+        document.getElementById("missoesAprovadas")
+            .innerText = aprovadas.length;
+
+
+        // perfil
+        document.getElementById("perfilMissoes")
+            .innerText = minhasMissoes.length;
+
+        document.getElementById("perfilAprovadas")
+            .innerText = aprovadas.length;
+
 
         const historico =
             document.getElementById("historicoMissoes");
+        
 
         historico.innerHTML = "";
 
@@ -354,18 +383,41 @@ async function carregarHistorico() {
 
             historico.innerHTML += `
 
-                <div class="cardMissao">
+            <tr>
 
-                    <h3>${missao.ponto_nome}</h3>
+                <td>
+                    ${new Date(
+                        missao.created_at
+                    ).toLocaleDateString()}
+                </td>
 
-                    <p>Status: ${missao.status}</p>
+                <td>
+                    ${missao.ponto_nome}
+                </td>
 
-                    <p>Pontos: ${missao.pontos}</p>
+                <td>
 
-                </div>
+                    <span class="
+                        status
+                        ${missao.status}
+                    ">
+
+                        ${missao.status}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    +${missao.pontos}
+
+                </td>
+
+            </tr>
             `;
         });
-
+                          
     } catch (erro) {
 
         console.log(erro);
@@ -453,23 +505,38 @@ async function carregarResgates() {
 
                 <div class="cardResgate">
 
-                    <h3>${resgate.produto_nome}</h3>
+                    <h3>
+
+                        ${resgate.produto_nome}
+
+                    </h3>
 
                     <p>
-                        Código:
-                        <strong>${resgate.codigo}</strong>
+
+                        Código do voucher:
+
+                        <strong>
+
+                            ${resgate.codigo}
+
+                        </strong>
+
                     </p>
 
                     <p>
-                        Pontos gastos:
+
+                        EcoCredits utilizados:
                         ${resgate.pontos_gastos}
+
                     </p>
 
                     <p>
-                        Resgatado em:
+
+                        Data do resgate:
                         ${new Date(
                             resgate.created_at
                         ).toLocaleDateString()}
+
                     </p>
 
                 </div>

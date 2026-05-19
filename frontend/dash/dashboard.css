@@ -2,11 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body{
-    background: #f4f4f4;
+    background: #F4F6F8;
+    overflow-x: hidden;
 }
 
 .hidden{
@@ -27,36 +28,72 @@ APP
 SIDEBAR
 =============================== */
 .sidebar{
-    width: 260px;
-    background: #2E5E1A;
+
+    width: 270px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #2E5E1A,
+            #3D7A24
+        );
+
     color: white;
-    padding: 30px 20px;
+
+    padding: 35px 20px;
 
     display: flex;
     flex-direction: column;
+
     gap: 15px;
+
+    box-shadow:
+        4px 0 20px rgba(0,0,0,0.08);
 }
 
+
+/* logo */
 .sidebar h2{
-    font-size: 2rem;
-    margin-bottom: 20px;
+
+    font-size: 2.3rem;
+
+    margin-bottom: 30px;
+
+    font-weight: 700;
 }
 
+
+/* botões */
 .sidebar button{
-    background: rgba(255,255,255,0.1);
+
+    background: rgba(255,255,255,0.08);
+
     border: none;
+
     color: white;
-    padding: 14px;
-    border-radius: 10px;
+
+    padding: 16px 18px;
+
+    border-radius: 14px;
+
     cursor: pointer;
+
     font-size: 1rem;
+
     text-align: left;
 
-    transition: 0.2s;
+    transition: 0.25s;
+
+    font-weight: 500;
 }
 
+
+/* hover */
 .sidebar button:hover{
-    background: rgba(255,255,255,0.2);
+
+    background: rgba(255,255,255,0.18);
+
+    transform: translateX(5px);
 }
 
 
@@ -64,52 +101,252 @@ SIDEBAR
 CONTEÚDO
 =============================== */
 .content{
+
     flex: 1;
+
     padding: 40px;
 }
 
 
 /* ===============================
-PÁGINAS
+TOPO DASHBOARD
 =============================== */
-.page h1,
-.page h2{
-    margin-bottom: 20px;
-    color: #2E5E1A;
+.dashboard-top{
+
+    margin-bottom: 30px;
 }
 
-.page p{
+
+/* título */
+.dashboard-top h1{
+
+    font-size: 3rem;
+
+    color: #1F2937;
+
     margin-bottom: 10px;
+
+    font-weight: 700;
+}
+
+
+/* subtítulo */
+.dashboard-top p{
+
+    color: #6B7280;
+
+    font-size: 1.1rem;
 }
 
 
 /* ===============================
-HOME CARDS
+CARDS ESTATÍSTICAS
 =============================== */
-.infoCards{
-    display: flex;
-    gap: 20px;
-    margin-bottom: 30px;
+.stats-grid{
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 25px;
+
+    margin-bottom: 40px;
 }
 
-.infoCard{
+
+/* card */
+.stat-card{
+
     background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 
-    min-width: 220px;
+    padding: 30px;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.06);
+
+    transition: 0.25s;
 }
 
-.infoCard h3{
-    color: #666;
+
+/* hover */
+.stat-card:hover{
+
+    transform: translateY(-5px);
+}
+
+
+/* título */
+.stat-card h3{
+
+    color: #6B7280;
+
+    margin-bottom: 15px;
+
+    font-size: 1rem;
+}
+
+
+/* valor */
+.stat-card h2{
+
+    font-size: 3rem;
+
+    color: #2E5E1A;
+
     margin-bottom: 10px;
 }
 
-.infoCard p{
+
+/* texto */
+.stat-card p{
+
+    color: #6B7280;
+}
+
+
+/* ===============================
+HISTÓRICO
+=============================== */
+.historico-container{
+
+    background: white;
+
+    border-radius: 25px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.06);
+
+    max-height: 500px;
+
+    overflow-y: auto;
+}
+
+.historico-container::-webkit-scrollbar{
+
+    width: 8px;
+}
+
+.historico-container::-webkit-scrollbar-thumb{
+
+    background: #2E5E1A;
+
+    border-radius: 10px;
+}
+
+
+/* topo */
+.historico-header{
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+
+.historico-header h2{
+
+    color: #1F2937;
+
     font-size: 2rem;
-    font-weight: bold;
-    color: #2E5E1A;
+}
+
+
+/* tabela */
+.historico-table{
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+/* cabeçalho */
+.historico-table thead{
+
+    background: #F9FAFB;
+}
+
+
+.historico-table th{
+
+    padding: 18px;
+
+    text-align: left;
+
+    color: #374151;
+
+    font-size: 0.95rem;
+}
+
+
+/* linhas */
+.historico-table td{
+
+    padding: 20px 18px;
+
+    border-top: 1px solid #E5E7EB;
+
+    color: #374151;
+}
+
+
+/* hover linha */
+.historico-table tbody tr:hover{
+
+    background: #F9FAFB;
+}
+
+
+/* ===============================
+STATUS
+=============================== */
+.status{
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    font-size: 0.9rem;
+
+    font-weight: 600;
+
+    display: inline-block;
+}
+
+
+/* aprovada */
+.aprovada{
+
+    background: #DCFCE7;
+
+    color: #166534;
+}
+
+
+/* rejeitada */
+.rejeitada{
+
+    background: #FEE2E2;
+
+    color: #991B1B;
+}
+
+
+/* pendente */
+.pendente{
+
+    background: #FEF3C7;
+
+    color: #92400E;
 }
 
 
@@ -117,53 +354,85 @@ HOME CARDS
 FORM MISSÃO
 =============================== */
 .formMissao{
+
     background: white;
-    padding: 25px;
-    border-radius: 15px;
-    margin-top: 20px;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    margin-top: 25px;
 
     display: flex;
     flex-direction: column;
+
     gap: 15px;
 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.06);
 }
 
+
+/* labels */
 .formMissao label{
-    font-weight: bold;
+
+    font-weight: 600;
+
+    color: #374151;
 }
 
+
+/* inputs */
 .formMissao input,
 .formMissao select{
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-}
 
-.formMissao button{
-    background: #2E5E1A;
-    color: white;
-    border: none;
     padding: 14px;
-    border-radius: 10px;
-    cursor: pointer;
+
+    border-radius: 12px;
+
+    border: 1px solid #D1D5DB;
+
     font-size: 1rem;
 }
 
+
+/* botão */
+.formMissao button{
+
+    background: #2E5E1A;
+
+    color: white;
+
+    border: none;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+}
+
+
+/* hover */
 .formMissao button:hover{
-    opacity: 0.9;
+
+    background: #3D7A24;
 }
 
 
 /* ===============================
-BOTÕES
+MAPA
 =============================== */
-button{
-    transition: 0.2s;
-}
+iframe{
 
-button:hover{
-    transform: scale(1.02);
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.06);
 }
 
 
@@ -171,84 +440,738 @@ button:hover{
 PRODUTOS
 =============================== */
 #produtos{
+
     display: grid;
+
     grid-template-columns:
-        repeat(auto-fit, minmax(250px, 1fr));
+        repeat(auto-fit, minmax(260px, 1fr));
+
+    gap: 25px;
+}
+
+
+/* card produto */
+.produtoCard{
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.06);
+
+    transition: 0.25s;
+}
+
+
+/* hover */
+.produtoCard:hover{
+
+    transform: translateY(-6px);
+}
+
+
+/* imagem */
+.produtoCard img{
+
+    width: 170px;
+
+    height: 170px;
+
+    object-fit: contain;
+
+    margin-bottom: 18px;
+}
+
+
+/* nome */
+.produtoCard h3{
+
+    margin-bottom: 12px;
+
+    color: #1F2937;
+}
+
+
+/* preço */
+.produtoCard p{
+
+    font-weight: bold;
+
+    color: #2E5E1A;
+
+    font-size: 1.1rem;
+}
+
+
+/* botão */
+.produtoCard button{
+
+    margin-top: 18px;
+
+    background: #2E5E1A;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+/* hover */
+.produtoCard button:hover{
+
+    background: #3D7A24;
+}
+
+
+/* ===============================
+RESGATES
+=============================== */
+.cardResgate{
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.06);
+}
+
+
+/* ===============================
+RESPONSIVO PREMIUM
+=============================== */
+@media(max-width: 900px){
+
+    /* app */
+    .app{
+
+        flex-direction: column;
+    }
+
+
+    /* sidebar */
+    .sidebar{
+
+        width: 100%;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        overflow-x: auto;
+
+        gap: 10px;
+
+        padding: 15px;
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 999;
+    }
+
+
+    /* esconder título */
+    .sidebar h2{
+
+        display: none;
+    }
+
+
+    /* botões */
+    .sidebar button{
+
+        min-width: max-content;
+
+        padding: 12px 16px;
+
+        font-size: 0.9rem;
+
+        border-radius: 12px;
+    }
+
+
+    /* conteúdo */
+    .content{
+
+        padding: 18px;
+    }
+
+
+    /* topo */
+    .dashboard-top h1{
+
+        font-size: 2rem;
+
+        line-height: 1.2;
+    }
+
+    .dashboard-top p{
+
+        font-size: 0.95rem;
+    }
+
+
+    /* cards */
+    .stats-grid{
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .stat-card{
+
+        padding: 22px;
+    }
+
+    .stat-card h2{
+
+        font-size: 2.3rem;
+    }
+
+
+    /* histórico */
+    .historico-container{
+
+        padding: 18px;
+
+        overflow-x: auto;
+    }
+
+    .historico-header h2{
+
+        font-size: 1.5rem;
+    }
+
+    .historico-table{
+
+        min-width: 600px;
+    }
+
+
+    /* mapa */
+    .map-card{
+
+        padding: 12px;
+    }
+
+    .map-card iframe{
+
+        height: 300px;
+    }
+
+
+    /* formulário */
+    .formMissao{
+
+        padding: 20px;
+    }
+
+    .formMissao h3{
+
+        font-size: 1.3rem;
+    }
+
+    .formMissao input,
+    .formMissao select{
+
+        font-size: 0.95rem;
+    }
+
+    .formMissao button{
+
+        width: 100%;
+    }
+
+
+    /* produtos */
+    #produtos{
+
+        grid-template-columns: 1fr;
+    }
+
+    .produtoCard{
+
+        padding: 20px;
+    }
+
+    .produtoCard img{
+
+        width: 130px;
+
+        height: 130px;
+    }
+
+
+    /* resgates */
+    .cardResgate{
+
+        padding: 18px;
+    }
+
+
+    /* títulos */
+    .section-title{
+
+        font-size: 1.7rem;
+    }
+}
+
+/* ===============================
+MAPA PREMIUM
+=============================== */
+
+.section-title{
+
+    font-size: 2.2rem;
+
+    margin-bottom: 25px;
+
+    color: #1F2937;
+}
+
+
+/* card mapa */
+.map-card{
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.06);
+
+    margin-bottom: 25px;
+}
+
+
+/* iframe */
+.map-card iframe{
+
+    border-radius: 20px;
+}
+
+
+/* status */
+.status-box{
+
+    background: #ECFDF5;
+
+    border-left: 5px solid #10B981;
+
+    padding: 18px 20px;
+
+    border-radius: 16px;
+
+    margin-bottom: 25px;
+}
+
+
+/* texto status */
+.status-box p{
+
+    color: #065F46;
+
+    font-weight: 600;
+
+    font-size: 1rem;
+}
+
+
+/* form */
+.formMissao h3{
+
+    color: #1F2937;
+
+    margin-bottom: 10px;
+
+    font-size: 1.5rem;
+}
+
+/* ===============================
+LOJA PREMIUM
+=============================== */
+
+/* topo loja */
+.loja-header{
+
+    margin-bottom: 30px;
+}
+
+.loja-header h2{
+
+    font-size: 2.2rem;
+
+    color: #1F2937;
+
+    margin-bottom: 10px;
+}
+
+.loja-header p{
+
+    color: #6B7280;
+
+    font-size: 1rem;
+}
+
+
+/* grid produtos */
+#produtos{
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 25px;
+}
+
+
+/* card */
+.produtoCard{
+
+    background: white;
+
+    border-radius: 24px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.06);
+
+    transition: 0.25s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* hover */
+.produtoCard:hover{
+
+    transform: translateY(-8px);
+}
+
+
+/* imagem */
+.produtoCard img{
+
+    width: 180px;
+
+    height: 180px;
+
+    object-fit: contain;
+
+    margin-bottom: 20px;
+}
+
+
+/* título */
+.produtoCard h3{
+
+    color: #1F2937;
+
+    font-size: 1.4rem;
+
+    margin-bottom: 12px;
+}
+
+
+/* preço */
+.produtoCard p{
+
+    color: #2E5E1A;
+
+    font-size: 1.3rem;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
+}
+
+
+/* botão */
+.produtoCard button{
+
+    background:
+        linear-gradient(
+            135deg,
+            #2E5E1A,
+            #3D7A24
+        );
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 22px;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    transition: 0.25s;
+}
+
+
+/* hover botão */
+.produtoCard button:hover{
+
+    transform: scale(1.04);
+
+    opacity: 0.95;
+}
+
+/* ===============================
+RESGATES PREMIUM
+=============================== */
+
+/* topo */
+.resgates-header{
+
+    margin-bottom: 30px;
+}
+
+.resgates-header h2{
+
+    font-size: 2.2rem;
+
+    color: #1F2937;
+
+    margin-bottom: 10px;
+}
+
+.resgates-header p{
+
+    color: #6B7280;
+}
+
+
+/* lista */
+#listaResgates{
+
+    display: flex;
+
+    flex-direction: column;
 
     gap: 20px;
 }
 
-.produtoCard{
+
+/* card */
+.cardResgate{
+
     background: white;
-    border-radius: 15px;
-    padding: 20px;
 
-    text-align: center;
+    border-radius: 24px;
 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 28px;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.06);
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-left: 6px solid #2E5E1A;
 }
 
-.produtoCard img{
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
+
+/* título */
+.cardResgate h3{
+
+    color: #1F2937;
+
+    font-size: 1.5rem;
+
     margin-bottom: 15px;
 }
 
-.produtoCard h3{
+
+/* textos */
+.cardResgate p{
+
+    color: #4B5563;
+
+    margin-bottom: 10px;
+
+    font-size: 1rem;
+}
+
+
+/* código */
+.cardResgate strong{
+
+    color: #2E5E1A;
+
+    font-size: 1.1rem;
+
+    letter-spacing: 1px;
+}
+
+/* ===============================
+PERFIL PREMIUM
+=============================== */
+
+/* topo */
+.perfil-header{
+
+    margin-bottom: 30px;
+}
+
+.perfil-header h2{
+
+    font-size: 2.2rem;
+
+    color: #1F2937;
+
     margin-bottom: 10px;
 }
 
-.produtoCard p{
-    font-weight: bold;
-    color: #2E5E1A;
-}
+.perfil-header p{
 
-.produtoCard button{
-    margin-top: 15px;
-    background: #2E5E1A;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 10px;
-    cursor: pointer;
+    color: #6B7280;
 }
 
 
-/* ===============================
-CARDS MISSÃO/RESGATE
-=============================== */
-.cardMissao,
-.cardResgate{
+/* card */
+.perfil-card{
+
     background: white;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 15px;
 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 24px;
+
+    padding: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.06);
+
+    margin-bottom: 30px;
 }
 
 
-/* ===============================
-RESPONSIVO
-=============================== */
-@media(max-width: 768px){
+/* avatar */
+.perfil-avatar{
 
-    .app{
-        flex-direction: column;
-    }
+    width: 90px;
 
-    .sidebar{
-        width: 100%;
-        flex-direction: row;
-        overflow-x: auto;
-    }
+    height: 90px;
 
-    .content{
-        padding: 20px;
-    }
+    border-radius: 50%;
 
-    .infoCards{
-        flex-direction: column;
-    }
+    background:
+        linear-gradient(
+            135deg,
+            #2E5E1A,
+            #3D7A24
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 2.5rem;
+
+    color: white;
+}
+
+
+/* infos */
+.perfil-info h3{
+
+    font-size: 1.8rem;
+
+    color: #1F2937;
+
+    margin-bottom: 8px;
+}
+
+.perfil-info p{
+
+    color: #6B7280;
+}
+
+
+/* stats */
+.perfil-stats{
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 25px;
+}
+
+
+/* card stat */
+.perfil-stat{
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.06);
+}
+
+
+/* título */
+.perfil-stat h4{
+
+    color: #6B7280;
+
+    margin-bottom: 12px;
+}
+
+
+/* valor */
+.perfil-stat p{
+
+    font-size: 2.2rem;
+
+    font-weight: 700;
+
+    color: #2E5E1A;
 }
